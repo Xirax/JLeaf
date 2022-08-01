@@ -7,6 +7,12 @@ Aleksander Gacek (aka Xirax)
 ## Latest Version
 v0.6 (Raw development version)
 
+## Technologies
+- TypeScript
+- HTML / CSS
+- NodeJS / Express
+- ReactJS
+
 ## Features
 - Adding new projects
 - Adding new tasks
