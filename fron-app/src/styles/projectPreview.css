@@ -1,0 +1,92 @@
+.project-preview{
+    width: 82%;
+    height: 58px;
+
+    background-color: #636363;
+    border-radius: 2px;
+    box-sizing: border-box;
+
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-left: 25px;
+
+    border: 2px solid #636363;
+
+    transition: ease-in-out .15s;
+}
+
+.project-preview:hover{
+    border: 2px solid white;
+}
+
+.preview-title{
+    font-size: 22px;
+    color: white;
+    font-weight: bold;
+
+    flex: 7;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+.preview-desc{
+    font-size: 16px;
+    color: #bfbfbf;
+    background-color: #737373;
+
+    flex: 7;
+    height: 100%;
+    
+    display: flex;
+    align-items: center;
+
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+.previw-date{
+    width: 70%;
+    height: 70%;
+
+    flex: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.preview-img-box{
+    flex: 1;
+    height: 100%;
+
+    background-color: #737373;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 2px 2px 0;
+}
+
+
+.preview-img{
+    width: 35px;
+    height: 35px;
+
+    object-fit: scale-down;
+}
+
+.preview-img:hover{
+    animation-name: shake;
+    animation-duration: 0.1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}

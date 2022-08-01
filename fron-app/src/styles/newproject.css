@@ -1,0 +1,79 @@
+
+#shortHeader{
+    width: 60%;
+    height: 90px;
+    padding: 45px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    box-sizing: border-box;
+
+    border-bottom: 3px solid #919191;
+}
+
+#headerTitle{
+    font-size: 34px;
+    font-weight: bold;
+    color: white;
+}
+
+.inputRow{
+    width: 90%;
+    height: 45px;
+    margin-bottom: 45px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 26px;
+}
+
+.configForm{
+    width: 60%;
+    padding: 45px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+.configInput{
+    width: 45%;
+    height: 45px;
+    padding: 12px;
+
+    box-sizing: border-box;
+
+    border-radius: 6px;
+    border: none;
+
+    background-color: #636363;
+    color: #AAAAAA;
+}
+
+button{
+    width: 320px;
+    height: 45px;
+
+    border-radius: 6px;
+    border: none;
+
+    background-color: #636363;
+
+    font-size: 22px;
+    color: white;
+
+    transition: ease-in-out .15s;
+}
+
+button:hover{
+    background-color: #919191;
+    color: #565656;
+}

@@ -1,0 +1,42 @@
+#header{
+
+    width: 98%;
+    height: 90px;
+    box-sizing: border-box;
+    padding-left: 25px;
+    padding-right: 25px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 2px solid #919191;
+}
+
+.title{
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+}
+
+.description{
+    font-size: 18px;
+    color: #636363;
+    margin-left: 12px;
+    margin-top: -18px;
+}
+
+#project-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.header-icon{
+    width: 21px;
+    height: 21px;
+
+    margin-left: 60px;
+
+    object-fit: scale-down;
+}

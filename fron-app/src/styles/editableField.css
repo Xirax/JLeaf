@@ -1,0 +1,26 @@
+
+input{
+    background-color: transparent;
+    border: none;
+
+    color: white;
+    font-size: 18px;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+input:focus{
+    border: none;
+    outline: none;
+    animation-name: text-blink;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+}
+
+
+@keyframes text-blink{
+    0%{ color: white }
+    50%{ color: #b3b3b3 }
+    100%{ color: white }
+}

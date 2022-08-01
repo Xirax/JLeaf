@@ -1,0 +1,30 @@
+
+@keyframes extendMenu {
+    0%{ width: 60px; }
+    100%{ width: 280px; }
+}
+
+@keyframes hideMenu {
+    0%{ width: 280px; }
+    100%{ width: 60px; }
+}
+
+@keyframes rotateIcon {
+    0%{ transform: rotate(0deg); }
+    100%{ transform: rotate(90deg); }
+}
+
+@keyframes rotateIconBack {
+    0%{ transform: rotate(90deg); }
+    100%{ transform: rotate(0deg); }
+}
+
+@keyframes fadeOut {
+    0%{ opacity: 1; }
+    100%{ opacity: 0; }
+}
+
+@keyframes fadeIn {
+    0%{ opacity: 0; }
+    100%{ opacity: 1; } 
+}

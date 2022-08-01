@@ -1,0 +1,48 @@
+
+.solutionCard{
+
+    width: 52%;
+    height: 65px;
+    padding-left: 25px;
+    padding-right: 25px;
+    box-sizing: border-box;
+
+    background-color: #636363;
+    
+    border-radius: 6px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    transition: ease-in-out .15s;
+
+    color: #AAAAAA;
+
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.solutionCard:hover{
+    background-color: #919191;
+    color: #565656;
+}
+
+.solutionPrevievTitle{
+    color:white;
+    font-size: 32px;
+    font-weight: normal;
+}
+
+.solutionPrevievDesc{
+    /* color: #AAAAAA; */
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.selected{
+    border: solid 3px white;
+    background-color: #919191;
+    color: #565656;
+}

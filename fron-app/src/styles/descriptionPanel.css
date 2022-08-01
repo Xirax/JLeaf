@@ -1,0 +1,89 @@
+
+input[disabled] { pointer-events: all }
+
+.task-description-panel{
+
+    position: absolute;
+
+    top: 100px;
+    left: 300px;
+
+    width: 740px;
+    height: 800px;
+
+    background-color: rgba(99, 99, 99, 0.85);
+    border-radius: 2px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.panel-icon{
+    width: 24px;
+    height: 24px;
+
+    margin-top: 25px;
+    margin-right: 25px;
+
+    align-self: flex-end;
+
+    cursor: pointer;
+}
+
+
+.description-input{
+    width: 96%;
+
+    background-color: transparent;
+    border: none;
+
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+
+    cursor: pointer;
+
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.description-area{
+    width: 96%;
+    height: 600px;
+
+    background-color: transparent;
+    border: none;
+
+    color: white;
+    font-size: 16px;
+    text-align: left;
+
+    resize: none;
+
+    cursor: pointer;
+}
+
+.description-input:focus{
+    border: none;
+    outline: none;
+    animation-name: text-blink;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+}
+
+.description-area:focus{
+    border: none;
+    outline: none;
+    animation-name: text-blink;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+}
+
+
+@keyframes text-blink{
+    0%{ color: white }
+    50%{ color: #b3b3b3 }
+    100%{ color: white }
+}
