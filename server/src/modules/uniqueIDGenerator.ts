@@ -5,7 +5,7 @@ export default class UniqueIDGenerator{
     static generate(letterConstant: string, precission: number){
         let idSeed = new Date(Date.now());
         let ID = letterConstant + this.ordinal + ';' + idSeed.getDate() + ';' + idSeed.getDay() + ';' + idSeed.getMonth() + ';' + idSeed.getFullYear() + ';';
-        ID += idSeed.getHours() + ';' + idSeed.getMinutes() + ';' + idSeed.getSeconds() + ';' + Math.round(Math.random() * precission);
+        ID += idSeed.getHours() + ';' + idSeed.getMinutes() + ';' + idSeed.getSeconds() + ';' + (Math.round(Math.random() * precission) + precission);
 
         this.ordinal++;
         

@@ -15,7 +15,7 @@ router.get('/createNewSolution', (req, res) => {
 
 router.get('/getProjects', (req, res) => {
     let projects = solutionManager.extractAllProjects();
-    res.send({projects: projects});
+    res.send(JSON.stringify({projects: projects}));
 })
 
 
@@ -35,7 +35,7 @@ router.get('/projectInfo', (req, res) => {
     if(solutionManager.anySolutionIsSelected()){
         let projectInfo = solutionManager.getProjectInfo();
         console.log(projectInfo);
-        res.send(projectInfo);  
+        res.send(JSON.stringify(projectInfo));  
     }else
         res.send({err: NO_PROJECT_ERR})
 })
@@ -51,25 +51,24 @@ router.post('/changeProjectInfo', (req, res) => {
 router.get('/addTask', (req, res) => {
     if(solutionManager.anySolutionIsSelected()){
         let newTask = solutionManager.addTask();
-        res.send({newTask: newTask});
+        res.send(JSON.stringify({newTask: newTask}));
     }
     else
-        res.send({err: NO_PROJECT_ERR})  
+        res.send(JSON.stringify({err: NO_PROJECT_ERR}))  
 })
 
 router.post('/editTask', (req, res) => {
     if(solutionManager.anySolutionIsSelected()){
         let editedTask = solutionManager.editTask(req.body);
-        res.send({editedTask: editedTask});
+        res.send(JSON.stringify({editedTask: editedTask}));
     }
-     
-    res.end({err: NO_PROJECT_ERR});
+    else res.end({err: NO_PROJECT_ERR});
 })
 
 router.get('/getTasks', (req, res) => {
     if(solutionManager.anySolutionIsSelected()){
         let tasks = solutionManager.extractTasks();
-        res.send({tasks: tasks});
+        res.send(JSON.stringify({tasks: tasks}));
     }
     else 
         res.send({tasks: []});
@@ -84,9 +83,8 @@ router.post('/deleteTask', (req, res) => {
 
 router.get('/addCategory', (req, res) => {
     if(solutionManager.anySolutionIsSelected()){
-        console.log('here is added');
         let newCat = solutionManager.addCategory();
-        res.send({newCat: newCat});
+        res.send(JSON.stringify({newCat: newCat}));
     }
     else 
         res.send({err: NO_PROJECT_ERR});
@@ -96,9 +94,7 @@ router.post('/editCategory', (req, res) => {
     if(solutionManager.anySolutionIsSelected()){
         let editedCat = solutionManager.editCategory(req.body);  
         res.send({editedCat: editedCat});
-    }
-       
-    res.end({err: NO_PROJECT_ERR});
+    }else res.end(JSON.stringify({err: NO_PROJECT_ERR}));
 })
 
 router.post('/deleteCategory', (req, res) => {
@@ -110,9 +106,9 @@ router.post('/deleteCategory', (req, res) => {
 
 router.get('/getCategories', (req, res) => {
     if(solutionManager.anySolutionIsSelected())
-        res.send({ categories: solutionManager.extractProjectCategories() });
+        res.send(JSON.stringify({ categories: solutionManager.extractProjectCategories() }));
     else
-        res.send({error: NO_PROJECT_ERR});    
+        res.send(JSON.stringify({error: NO_PROJECT_ERR}));    
 })
 
 

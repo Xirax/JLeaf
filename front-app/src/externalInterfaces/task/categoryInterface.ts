@@ -1,6 +1,6 @@
 
 export default interface ICategory{
-    catID: string,
+    ID: string,
     name?: string,
     color?: string
 }

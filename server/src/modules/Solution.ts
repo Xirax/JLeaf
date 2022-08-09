@@ -1,10 +1,9 @@
 import CategoriesStorage from "./categoriesStorage";
-import Category from "./category";
 import IExtractedSolution from "./interfaces/extractedProjectInterface";
 import TaskStorage from "./taskStorage";
 
 
-export default class ProjectSolution{
+export default class Solution{
 
     private title: string;
     private description: string;

@@ -10,6 +10,7 @@ interface TDPProps{
     title: string,
     description: string,
     onTitleChange: Function,
+    onDescriptionChange: Function,
     hide: boolean
 }
 
@@ -59,16 +60,12 @@ export default class TaskDescriptionPanel extends React.Component<TDPProps, TDPS
          }
     }
 
-    updateDescription(ev: React.ChangeEvent<HTMLTextAreaElement>){
-        this.setState({ description: ev.target.value });
-    }
-
     render(){
 
         return (
             <div style={{...Styles.style.task.descriptionPanel, height: this.state.height + 'px'}}>
-                <EditableField defaultValue={this.state.title} onValueChange={this.props.onTitleChange} syncWithDefaultValue={false} />
-                <textarea className="description-area" value={this.state.description} onChange={ (ev) => this.updateDescription(ev) } />
+                <EditableField defaultValue={this.state.title} onEditionEnd={this.props.onTitleChange} syncWithDefaultValue={false} />
+                <EditableField defaultValue={this.state.description} onEditionEnd={this.props.onDescriptionChange} syncWithDefaultValue={false} />
             </div>
         )
     }

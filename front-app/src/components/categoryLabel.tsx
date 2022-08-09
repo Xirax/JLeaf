@@ -79,7 +79,7 @@ export default class CategoryLabel extends React.Component<CategoryProps, Catego
 
     disbaleLabelEdit(){
         this.setState({ editMode: false })
-        let category: ICategory = { catID: this.props.ID, name: this.state.text }
+        let category: ICategory = { ID: this.props.ID, name: this.state.text }
         this.props.onEdit(category);
     }
 
@@ -114,7 +114,7 @@ export default class CategoryLabel extends React.Component<CategoryProps, Catego
     changeLabelColor(color: string){
         this.setState({ color: color })
         this.closeColorMenu();
-        let category: ICategory = { catID: this.props.ID, color: color }
+        let category: ICategory = { ID: this.props.ID, color: color }
         this.props.onEdit(category);
     }
 

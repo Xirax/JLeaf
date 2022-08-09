@@ -1,57 +1,70 @@
 import Category from "./category";
-import IExtractedTask from "./interfaces/extractedTaskInterface";
+import DBCommunicator from "./DB/DBCommunicator";
+import IExtractedTask from "./interfaces/TaskDocInterface";
 import UniqueIDGenerator from "./uniqueIDGenerator";
+import { ObjectId } from 'mongodb';
+import TaskSchema from "../dbSchemas/TaskSchema";
 
 export default class Task{
 
-    public readonly taskID: string;
-    private taskName: string = "New Task";
-    private description: string = "Task description";
-    private personID: string = "-";
-    private statusIndex: number = 0;
-    private deadlineDate: Date;
-    private categoryID: string = "-";
+    public readonly taskDBCommunicator: DBCommunicator;
+    private taskDoc: IExtractedTask;
 
-    constructor(){
-        this.deadlineDate = new Date(Date.now());
-        this.taskID = UniqueIDGenerator.generate('T', 10000);
+    constructor(task: IExtractedTask | undefined = undefined){
+
+        if(task != undefined)
+            this.taskDoc = task;
+        else{
+            this.taskDoc = {
+                ID: UniqueIDGenerator.generate('T', 10000),
+                name: "New Task",
+                description: "Task description",
+                statusIndex: 0,
+                personID: "-",
+                deadlineDate: new Date(Date.now()),
+                categoryID: "-"
+            }
+        }
+
+        this.taskDBCommunicator = new DBCommunicator(TaskSchema, { ID: this.taskDoc.ID });
+        if(task == undefined) this.taskDBCommunicator.createElementInDB(this.extract());
+    }
+
+    get ID(){
+        return this.taskDoc.ID;
     }
 
     editName(name: string){
-        this.taskName = name;
+        this.taskDoc.name = name;
+        this.taskDBCommunicator.updateElementInDB({name: name});
     }
 
     editDescription(text: string){
-        this.description = text;
+        this.taskDoc.description = text;
+        this.taskDBCommunicator.updateElementInDB({description: text});
     }
 
     setStatusIndex(index: number){
-        this.statusIndex = index;
+        this.taskDoc.statusIndex = index;
+        this.taskDBCommunicator.updateElementInDB({statusIndex: index});
     }
 
     setPersonID(id: string){
-        this.personID = id;
+        this.taskDoc.personID = id;
+        this.taskDBCommunicator.updateElementInDB({personID: id});
     }
 
     setDeadlineDate(date: Date){
-        this.deadlineDate = date;
+        this.taskDoc.deadlineDate = date;
+        this.taskDBCommunicator.updateElementInDB({deadlineDate: date});
     }
 
     setCategoryID(id: string){
-        this.categoryID = id;
+        this.taskDoc.categoryID = id;
+        this.taskDBCommunicator.updateElementInDB({categoryID: id});
     }
 
     extract(){
-        let extractedTask: IExtractedTask = {
-            taskID: this.taskID,
-            taskName: this.taskName,
-            description: this.description,
-            personID: this.personID,
-            statusIndex: this.statusIndex,
-            deadlineDate: this.deadlineDate,
-            categoryID: this.categoryID
-        }
-
-        return extractedTask;
+        return this.taskDoc;
     }
 }

@@ -1,6 +1,6 @@
 import { CANCELLED } from "dns";
 import Category from "../modules/category";
-import IExtractedCategory from "../modules/interfaces/extractedCategoryInterface";
+import IExtractedCategory from "../modules/interfaces/CategoryDocInterface";
 import Assert from "./assert";
 
 export default function runAllCategoryTests(){

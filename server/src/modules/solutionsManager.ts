@@ -1,17 +1,15 @@
-import CategoriesStorage from "./categoriesStorage";
-import IExtractedCategory from "./interfaces/extractedCategoryInterface";
+import ICategoryDoc from "./interfaces/CategoryDocInterface";
 import IExtractedProject from "./interfaces/extractedProjectInterface";
-import IExtractedTask from "./interfaces/extractedTaskInterface";
-import ProjectSolution from "./projectSolution";
-import Task from "./task";
+import ITaskDoc from "./interfaces/TaskDocInterface";
+import Solution from "./Solution";
 
 export default class SolutionsManager{
 
-    private projects: ProjectSolution[] = [];
+    private projects: Solution[] = [];
     private activeProjectIndex: number = -1;
 
     createNewProject(){
-        let newProjectSolution = new ProjectSolution("New Project", "Project description...");
+        let newProjectSolution = new Solution("New Project", "Project description...");
         this.projects.push(newProjectSolution);
     }
 
@@ -48,11 +46,11 @@ export default class SolutionsManager{
     }
 
     editCategory(reqBody: any){
-        return this.projects[this.activeProjectIndex].categoriesStorage.editCategory(reqBody as IExtractedCategory);
+        return this.projects[this.activeProjectIndex].categoriesStorage.editCategory(reqBody as ICategoryDoc);
     }
 
     deleteCategory(reqBody: any){
-        this.projects[this.activeProjectIndex].categoriesStorage.deleteCategory(reqBody.catID);
+        this.projects[this.activeProjectIndex].categoriesStorage.deleteCategory(reqBody.ID);
     }
 
     getLastCreatedCategoryID(){
@@ -64,11 +62,11 @@ export default class SolutionsManager{
     }
 
     editTask(reqBody: any){
-        return this.projects[this.activeProjectIndex].taskStorage.editTask(reqBody as IExtractedTask);
+        return this.projects[this.activeProjectIndex].taskStorage.editTask(reqBody as ITaskDoc);
     }
 
     deleteTask(reqBody: any){
-        this.projects[this.activeProjectIndex].taskStorage.deleteTask(reqBody.taskID);
+        this.projects[this.activeProjectIndex].taskStorage.deleteTask(reqBody.ID);
     }
 
     getLastCreatedTaskID(){
@@ -76,12 +74,12 @@ export default class SolutionsManager{
     }
 
     extractProjectCategories(){
-        let extractedCategories: IExtractedCategory[] = this.projects[this.activeProjectIndex].categoriesStorage.extractCategories();
+        let extractedCategories: ICategoryDoc[] = this.projects[this.activeProjectIndex].categoriesStorage.extractCategories();
         return extractedCategories;
     }
 
     extractTasks(){
-        let extractedTasks: IExtractedTask[] = this.projects[this.activeProjectIndex].taskStorage.extactTasks();
+        let extractedTasks: ITaskDoc[] = this.projects[this.activeProjectIndex].taskStorage.extactTasks();
         return extractedTasks;
     }
 

@@ -32,7 +32,7 @@ function shouldReturnLastTaskID(){
     let extracted = taskStorage.extactTasks();
 
     Assert.setAssertionTestName("Should Return Last Task ID");
-    Assert.equals(lastID, extracted[n - 1].taskID);
+    Assert.equals(lastID, extracted[n - 1].ID);
 }
 
 function ShouldEditSpecifiedTaskName(){
@@ -47,11 +47,11 @@ function ShouldEditSpecifiedTaskName(){
             taskID = taskStorage.getLastTaskID();
     }
 
-    taskStorage.editTask({ taskID: taskID, taskName: expectedName });
+    taskStorage.editTask({ ID: taskID, name: expectedName });
     let extracted = taskStorage.extactTasks();
 
     Assert.setAssertionTestName("Should Edit Specified Task Name");
-    Assert.equals(extracted[randomIndex].taskName, expectedName)    
+    Assert.equals(extracted[randomIndex].name, expectedName)    
 }
 
 
@@ -69,7 +69,7 @@ function shouldDeleteSpecifiedTask(){
 
     taskStorage.deleteTask(taskID);
 
-    let names = taskStorage.extactTasks().map(task => { return task.taskName; });
+    let names = taskStorage.extactTasks().map(task => { return task.name; });
     
     Assert.setAssertionTestName("Should Delete Specified Task");
     Assert.allNotEquals(names, changedName);

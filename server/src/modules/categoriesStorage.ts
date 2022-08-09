@@ -1,19 +1,33 @@
+import CategorySchema from "../dbSchemas/CategorySchema";
 import Category from "./category";
-import IExtractedCategory from "./interfaces/extractedCategoryInterface";
+import DBCommunicator from "./DB/DBCommunicator";
+import ICategoryDoc from "./interfaces/CategoryDocInterface";
 
 export default class CategoriesStorage{
 
     private categories: Category[] = [];
 
+    constructor(){
+        this.loadCategoriesFromDB();
+    }
+
+    private async loadCategoriesFromDB(){
+        let dbCats = await DBCommunicator.getAllDocsFromModel(CategorySchema);
+        dbCats.forEach(dbC => {
+            let catDoc: ICategoryDoc = dbC as ICategoryDoc;
+            let category: Category = new Category(catDoc);
+            this.categories.push(category);
+        })
+    }
+
     addCategory(){
         let newCat = new Category();
         this.categories.push(newCat);
-        return newCat;
+        return newCat.extract();
     }
 
-    editCategory(catData: IExtractedCategory){
-        const index = this.categories.findIndex(cat => { return cat.catID == catData.catID; }, 1);
-
+    editCategory(catData: ICategoryDoc){
+        const index = this.categories.findIndex(cat => { return cat.ID == catData.ID; }, 1);
 
         if(catData.name)
             this.categories[index].editName(catData.name);
@@ -29,16 +43,13 @@ export default class CategoriesStorage{
     }
 
     getLastCreatedID(){
-        return this.categories[this.categoriesCount() - 1].catID;
+        return this.categories[this.categoriesCount() - 1].ID;
     }
 
     deleteCategory(catID: string){
-        let index = this.categories.findIndex(cat => { return cat.catID == catID }, 1);
-        if(index >= 0) this.categories.splice(index, 1);
-    }
-
-    indexIsInRange(index: number){
-        return index >= 0 && index < this.categoriesCount();
+        let index = this.categories.findIndex(cat => { return cat.ID == catID }, 1);
+        this.categories[index].categoryDBCommunicator.deleteElementInDB();
+        this.categories.splice(index, 1);
     }
 
     categoriesCount(){
@@ -46,7 +57,7 @@ export default class CategoriesStorage{
     }
 
     extractCategories(){
-        let extractedCategories: IExtractedCategory[] = [];
+        let extractedCategories: ICategoryDoc[] = [];
         for(let i=0; i<this.categories.length; i++)
             extractedCategories.push(this.categories[i].extract());
         

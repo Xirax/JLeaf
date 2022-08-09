@@ -58,8 +58,7 @@ export default class Task extends React.Component<TaskProps, TaskState>{
         this.openStatusMenu = this.openStatusMenu.bind(this);
         this.closeStatusMenu = this.closeStatusMenu.bind(this);
         this.toggleDescriptionPanel = this.toggleDescriptionPanel.bind(this);
-        this.closeDescriptionPanel = this.closeDescriptionPanel.bind(this);
-        this.setName = this.setName.bind(this);
+        this.setTitle = this.setTitle.bind(this);
         this.setDescription = this.setDescription.bind(this);
         this.closeCategoryMenu = this.closeCategoryMenu.bind(this);
         this.setDate = this.setDate.bind(this);
@@ -92,34 +91,30 @@ export default class Task extends React.Component<TaskProps, TaskState>{
             this.setState({ descriptionPanelOn: true, panelShouldHide: false });
     }
 
-    closeDescriptionPanel(){
-        this.setState({ descriptionPanelOn: false });
-    }
-
-    setName(newName: string){
-        let editedTask: ITask = {taskID: this.props.ID, taskName: newName};
+    setTitle(newName: string){
+        let editedTask: ITask = {ID: this.props.ID, name: newName};
         this.props.onEdit(editedTask);
     }
 
     setDescription(newDescription: string){
-        let editedTask: ITask = {taskID: this.props.ID, description: newDescription};
+        let editedTask: ITask = {ID: this.props.ID, description: newDescription};
         this.props.onEdit(editedTask);
     }
 
     selectStatus(index: number){ 
         this.closeStatusMenu();
-        let editedTask: ITask = {taskID: this.props.ID, statusIndex: index};
+        let editedTask: ITask = {ID: this.props.ID, statusIndex: index};
         this.props.onEdit(editedTask);
     }
 
     setDate(newDate: Date){
-        let editedTask: ITask = {taskID: this.props.ID, deadlineDate: newDate}
+        let editedTask: ITask = {ID: this.props.ID, deadlineDate: newDate}
         this.props.onEdit(editedTask)
     }
 
     selectCategory(ID: string){
         this.closeCategoryMenu();
-        let editedTask: ITask = { taskID: this.props.ID, categoryID: ID };
+        let editedTask: ITask = { ID: this.props.ID, categoryID: ID };
         this.props.onEdit(editedTask);
     }
 
@@ -142,7 +137,7 @@ export default class Task extends React.Component<TaskProps, TaskState>{
             return {
                 text: cat.name,
                 background: cat.color,
-                action: () => { this.selectCategory(cat.catID) }
+                action: () => { this.selectCategory(cat.ID) }
             }
         } )
 
@@ -157,10 +152,10 @@ export default class Task extends React.Component<TaskProps, TaskState>{
             <div></div>
 
         let status = this.props.statusIndex >= 0 && this.props.statusIndex < statusesList.length ? statusesList[this.props.statusIndex] : statusesList[0];
-        let category = this.props.allCategories.find(cat => { return cat.catID == this.props.categoryID; });
+        let category = this.props.allCategories.find(cat => { return cat.ID == this.props.categoryID; });
 
         if(category == undefined)
-            category = { catID: "", name: "NOT SELECTED", color: "#669999" }
+            category = { ID: "", name: "NOT SELECTED", color: "#669999" }
         
         let daysToDeadline = Math.round(new Date(this.props.date).getTime() - new Date(Date.now()).getTime()) / (1000 * 3600 * 24);
         let percantage = 1 / (daysToDeadline * 0.22) * 98;
@@ -169,7 +164,7 @@ export default class Task extends React.Component<TaskProps, TaskState>{
         let dateGradient = 'linear-gradient(90deg, ' +  Themes.lightSecondary() + ' ' + percantage + '% ,' + Themes.lightPrimary() + ' 16%)';
 
         let descriptionPanel = this.state.descriptionPanelOn ? 
-            <TaskDescriptionPanel title={this.props.name} description={this.props.ID} onTitleChange={this.setName} hide={this.state.panelShouldHide} />
+            <TaskDescriptionPanel title={this.props.name} description={this.props.description} onTitleChange={this.setTitle} onDescriptionChange={this.setDescription} hide={this.state.panelShouldHide} />
             :
             <div></div>
   

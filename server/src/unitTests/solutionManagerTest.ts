@@ -63,7 +63,7 @@ function shouldReturnLastCreatedTaskIdTEST(){
     let lastTask = extractedTasks[extractedTasks.length - 1];
 
     Assert.setAssertionTestName("Manager Should Return Last Created Task Id");
-    Assert.equals(lastID, lastTask.taskID);
+    Assert.equals(lastID, lastTask.ID);
 }
 
 function createNewSolutionsManagerWithProjects(solutionsCount: number){

@@ -57,23 +57,23 @@ export default class ProjectView extends React.Component<{}, ProjectViewState>{
         tasks.push(res.newTask as ITask);
         this.setState({tasks: tasks});
         if(this.state.selectedCategory != undefined)
-            this.editTask({ taskID: res.newTask.taskID, categoryID: this.state.selectedCategory.catID });
+            this.editTask({ ID: res.newTask.ID, categoryID: this.state.selectedCategory.ID });
     }
 
     async editTask(taskData: ITask){
         let res = await ServerRequests.editTask(taskData);
         if(!res.err){
             let tasks = this.state.tasks;
-            let index = tasks.findIndex(t => { return t.taskID == taskData.taskID });
+            let index = tasks.findIndex(t => { return t.ID == taskData.ID });
             tasks[index] = res.editedTask;
             this.setState({ tasks: tasks });
         }
     }
 
     deleteTask(taskID: string){
-        let tasks = this.state.tasks.filter(t => { return t.taskID != taskID; });
+        let tasks = this.state.tasks.filter(t => { return t.ID != taskID; });
         this.setState({ tasks: tasks });
-        ServerRequests.deleteTask({ taskID: taskID });  
+        ServerRequests.deleteTask({ ID: taskID });  
     }
 
     async loadCategories(){
@@ -94,24 +94,24 @@ export default class ProjectView extends React.Component<{}, ProjectViewState>{
         let res = await ServerRequests.editCategory(cat);
         if(!res.err){
             let cats = this.state.categories;
-            let index = cats.findIndex(c => { return res.editedCat.catID == c.catID; });
+            let index = cats.findIndex(c => { return res.editedCat.ID == c.ID; });
             cats[index] = res.editedCat as ICategory;
             this.setState({categories: cats});
         } 
     }
 
     deleteCategoryLabel(catID: string){
-        let cats = this.state.categories.filter(c => { return c.catID != catID });
+        let cats = this.state.categories.filter(c => { return c.ID != catID });
         this.setState({ categories: cats });
         console.log(cats);
-        ServerRequests.deleteCategory({catID: catID});
+        ServerRequests.deleteCategory({ID: catID});
     }
 
     selectCategoryAsFilter(selectedCatID: string){
         this.unselectCategoryFilter();
 
-        let selectedCategory = this.state.categories.find(c => { return c.catID == selectedCatID; });
-        if(selectedCategory?.catID == this.state.selectedCategory?.catID)
+        let selectedCategory = this.state.categories.find(c => { return c.ID == selectedCatID; });
+        if(selectedCategory?.ID == this.state.selectedCategory?.ID)
             selectedCategory = undefined;
         
         if(selectedCategory)

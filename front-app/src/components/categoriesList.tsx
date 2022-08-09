@@ -24,7 +24,7 @@ export default class CategoriesList extends React.Component<CategoriesListPorps>
             <div style={Styles.style.category.categoriesList}> 
                 {this.props.categories.map((cat) => {
                     return <CategoryLabel text={cat.name ? cat.name : "category" } color={cat.color ? cat.color : "#dc143c"} 
-                                key={cat.catID} ID={cat.catID} 
+                                key={cat.ID} ID={cat.ID} 
                                 onEdit={this.props.onCategoryEdit} onDelete={this.props.onCategoryDelete} onSelect={this.props.onCategorySelect} />
                 })}     
             </div>

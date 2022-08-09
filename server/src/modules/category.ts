@@ -1,17 +1,32 @@
 
-import IExtractedCategory from "./interfaces/extractedCategoryInterface";
+import CategorySchema from "../dbSchemas/CategorySchema";
+import DBCommunicator from "./DB/DBCommunicator";
+import ICategoryDoc from "./interfaces/CategoryDocInterface";
 import UniqueIDGenerator from "./uniqueIDGenerator";
 
 export default class Category{
 
-    private name: string;
-    private color: string;
-    public readonly catID: string;
+    private categoryDoc: ICategoryDoc;
+    public readonly categoryDBCommunicator: DBCommunicator;
 
-    constructor(){
-        this.name = "category";
-        this.color = "#dc143c";
-        this.catID = UniqueIDGenerator.generate('C', 10000);
+    constructor(catDoc: ICategoryDoc | undefined = undefined){
+
+        if(catDoc != undefined){
+            this.categoryDoc = catDoc
+        }else{
+            this.categoryDoc = {
+                ID: UniqueIDGenerator.generate('C', 10000),
+                name: "category",
+                color: "#dc143c",
+            }
+        }
+
+        this.categoryDBCommunicator = new DBCommunicator(CategorySchema, {ID: this.categoryDoc.ID });
+        if(catDoc == undefined) this.categoryDBCommunicator.createElementInDB(this.categoryDoc);
+    }
+
+    get ID(){
+        return this.categoryDoc.ID;
     }
 
     static throwNotAssignedLabel(){
@@ -23,21 +38,17 @@ export default class Category{
     }   
 
     editName(newName: string){
-        this.name = newName;
+        this.categoryDoc.name = newName;
+        this.categoryDBCommunicator.updateElementInDB({name: newName});
     }
 
     editColor(hexString: string){
-        this.color = hexString;
+        this.categoryDoc.color = hexString;
+        this.categoryDBCommunicator.updateElementInDB({color: hexString});
     }
 
     extract(){
-        let objectCategory: IExtractedCategory = {
-            name: this.name,
-            color: this.color,
-            catID: this.catID
-        }
-
-        return objectCategory;
+        return this.categoryDoc;
     }
 
 }

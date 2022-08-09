@@ -1,4 +1,4 @@
-import ProjectSolution from "../modules/projectSolution";
+import ProjectSolution from "../modules/Solution";
 import Assert from "./assert";
 
 export default function runAllProjectSolutionTests(){

@@ -1,5 +1,5 @@
 import express from 'express';
-import ProjectSolution from '../modules/projectSolution';
+import ProjectSolution from '../modules/Solution';
 
 const router = express.Router();
 

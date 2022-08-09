@@ -1,6 +1,6 @@
 
 export default interface IExtractedCategory{
-    catID: string
+    ID: string
     name?: string,
     color?: string,
 }

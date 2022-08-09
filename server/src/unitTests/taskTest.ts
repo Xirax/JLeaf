@@ -21,7 +21,7 @@ function shouldEditNameAndDescription(){
     let extracted = task.extract();
 
     Assert.setAssertionTestName("Should Edit Task Name and Description");
-    Assert.multiEquals([extracted.taskName, extracted.description], [expectedName, expectedDesc]);
+    Assert.multiEquals([extracted.name, extracted.description], [expectedName, expectedDesc]);
 }
 
 function shouldAssignSpecifiedCategoryID(){

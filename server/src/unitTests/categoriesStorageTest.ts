@@ -1,5 +1,5 @@
 import CategoriesStorage from "../modules/categoriesStorage";
-import IExtractedCategory from "../modules/interfaces/extractedCategoryInterface";
+import IExtractedCategory from "../modules/interfaces/CategoryDocInterface";
 import Assert from "./assert";
 
 export default function runAllCategoriesStorageTests(){
@@ -29,7 +29,7 @@ function shouldEditCategoryName(){
     categoriesStorage.addCategory();
     let catID = categoriesStorage.getLastCreatedID();
     categoriesStorage.editCategory({
-        catID: catID,
+        ID: catID,
         name: expectedName,
         color: expectedColor
     })
@@ -58,7 +58,7 @@ function shouldDeleteSpecifiedCategory(){
     }
    
 
-    categoriesStorage.editCategory({catID: catID1, name: expectedName});
+    categoriesStorage.editCategory({ID: catID1, name: expectedName});
     categoriesStorage.deleteCategory(catID2);
     let cats = categoriesStorage.extractCategories();
 

@@ -87,7 +87,7 @@ export default class StatisticsView extends React.Component<{}, StatisticsVState
     sortByCategory(catID: string){
         let tasks = this.state.tasks.filter(t => { return t.categoryID == catID });
         let statistics = this.calculateStatistics(tasks);
-        let filteredCategory = this.state.cateogries.filter(c => { return c.catID == catID})[0];
+        let filteredCategory = this.state.cateogries.filter(c => { return c.ID == catID})[0];
         this.setState({ statistics: statistics, filteredCategory: filteredCategory });
         this.resetGradients();
         this.animateGradients();
@@ -142,7 +142,7 @@ export default class StatisticsView extends React.Component<{}, StatisticsVState
         let categoryMenuElements: IContextMenuElement[] = this.state.cateogries.map(c => { return {
             text: c.name,
             background: c.color,
-            action: () => { this.sortByCategory(c.catID) }
+            action: () => { this.sortByCategory(c.ID) }
         }});
 
         let categoryContextMeu = this.state.categoryMenuOn ? 
@@ -154,7 +154,7 @@ export default class StatisticsView extends React.Component<{}, StatisticsVState
             return 'linear-gradient(90deg, ' + statusesList[index].color + ' ' + g + '%, transparent ' + g + '%)';
         });
 
-        let filteredCat: ICategory = this.state.filteredCategory ? this.state.filteredCategory : {catID: '-', color: Themes.lightPrimary(), name: '-'};
+        let filteredCat: ICategory = this.state.filteredCategory ? this.state.filteredCategory : {ID: '-', color: Themes.lightPrimary(), name: '-'};
 
         return(
             <div style={Styles.style.main.app}>

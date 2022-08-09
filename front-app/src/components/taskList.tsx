@@ -37,7 +37,7 @@ export default class TaskList extends React.Component<TaskListProps, TaskListSta
 
     filterTasks(category: ICategory | undefined){
         if(category != undefined)
-            return this.props.tasks.filter(t => { return t.categoryID == category.catID });
+            return this.props.tasks.filter(t => { return t.categoryID == category.ID });
         else
             return this.props.tasks;
     }
@@ -50,7 +50,7 @@ export default class TaskList extends React.Component<TaskListProps, TaskListSta
             <div style={Styles.style.task.taskList}>
                 { tasks.map( (tsk, index) => {
 
-                    return <Task name={notNull(tsk.taskName, "")} description={notNull(tsk.description, "")} ID={tsk.taskID} key={tsk.taskID}
+                    return <Task name={notNull(tsk.name, "")} description={notNull(tsk.description, "")} ID={tsk.ID} key={tsk.ID}
                         personID={tsk.personID} statusIndex={notNull(tsk.statusIndex, 0)} date={notNull(tsk.deadlineDate, new Date(Date.now()))} 
                         categoryID={notNull(tsk.categoryID, "")} allCategories={this.props.categories} onDelete={this.props.onTaskDelete} onEdit={this.props.onTaskEdit} />
                 }) }
