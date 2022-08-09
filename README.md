@@ -33,4 +33,4 @@ v0.6 (Raw development version)
 - Once again: App is in development, this version is demo and IT DOESN NOT SAVE YOUR DATA, ALSO ACCOUNTS ARE NOT SAVED
 
 ## Known Issues
-- Task description does not change (Issue found, fix in progress)
+- Task description does not change (fixed)
